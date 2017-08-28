@@ -9,12 +9,18 @@ class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    val id: Long = 0
+    var id: Long = 0
 
     @Column(name = "title")
-    val title: String = ""
+    var title: String = ""
 
     @Column(name = "text")
-    val text: String = ""
+    var text: String = ""
 
+    constructor()
+    constructor(id: Long, name: String, text: String) {
+        this.id = id
+        this.text = name
+        this.title = text
+    }
 }
