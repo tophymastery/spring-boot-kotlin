@@ -1,0 +1,31 @@
+--  *********************************************************************
+--  Update Database Script
+--  *********************************************************************
+--  Change Log: src/main/resources/db/changelog/db.changelog-master.yaml
+--  Ran at: 8/28/17 10:25 AM
+--  Against: root@localhost@jdbc:mysql://localhost:3306/chatbot_cms
+--  Liquibase version: 3.5.3
+--  *********************************************************************
+
+--  Create Database Lock Table
+CREATE TABLE DATABASECHANGELOGLOCK (ID INT NOT NULL, LOCKED BIT(1) NOT NULL, LOCKGRANTED datetime NULL, LOCKEDBY VARCHAR(255) NULL, CONSTRAINT PK_DATABASECHANGELOGLOCK PRIMARY KEY (ID));
+
+--  Initialize Database Lock Table
+DELETE FROM DATABASECHANGELOGLOCK;
+
+INSERT INTO DATABASECHANGELOGLOCK (ID, LOCKED) VALUES (1, 0);
+
+--  Lock Database
+UPDATE DATABASECHANGELOGLOCK SET LOCKED = 1, LOCKEDBY = '2405:9800:b808:5c22:b1fd:ebe:db54:fbbd (2405:9800:b808:5c22:b1fd:ebe:db54:fbbd)', LOCKGRANTED = '2017-08-28 10:25:38.556' WHERE ID = 1 AND LOCKED = 0;
+
+--  Create Database Change Log Table
+CREATE TABLE DATABASECHANGELOG (ID VARCHAR(255) NOT NULL, AUTHOR VARCHAR(255) NOT NULL, FILENAME VARCHAR(255) NOT NULL, DATEEXECUTED datetime NOT NULL, ORDEREXECUTED INT NOT NULL, EXECTYPE VARCHAR(10) NOT NULL, MD5SUM VARCHAR(35) NULL, DESCRIPTION VARCHAR(255) NULL, COMMENTS VARCHAR(255) NULL, TAG VARCHAR(255) NULL, LIQUIBASE VARCHAR(20) NULL, CONTEXTS VARCHAR(255) NULL, LABELS VARCHAR(255) NULL, DEPLOYMENT_ID VARCHAR(10) NULL);
+
+--  Changeset initial_database_schema::1::Top
+CREATE TABLE user (user_id INT NOT NULL, title VARCHAR(255) NULL, text VARCHAR(255) NULL, CONSTRAINT PK_USER PRIMARY KEY (user_id))CHARSET=UTF8mb4 COLLATE utf8mb4_bin;
+
+INSERT INTO DATABASECHANGELOG (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ('1', 'Top', 'initial_database_schema', NOW(), 1, '7:f8aa05d7730f470242d24f385b569586', 'createTable tableName=user', '', 'EXECUTED', NULL, NULL, '3.5.3', '3890739054');
+
+--  Release Database Lock
+UPDATE DATABASECHANGELOGLOCK SET LOCKED = 0, LOCKEDBY = NULL, LOCKGRANTED = NULL WHERE ID = 1;
+
