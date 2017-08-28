@@ -1,0 +1,27 @@
+databaseChangeLog:
+    - changeSet:
+        id: 001
+        author: Top
+        logicalFilePath: 'initial_database_schema'
+        changes:
+            - createTable:
+                schemaName: chatbot_cms
+                tableName: user
+                columns:
+                    - column:
+                        name: user_id
+                        type: int
+                        autoIncrement: true
+                        constraints:
+                            primaryKey: true
+                            nullable: false
+                    - column:
+                        name: title
+                        type: varchar(255)
+                    - column:
+                        name: text
+                        type: varchar(255)
+        modifySql:
+            - append:
+                dbms: mysql
+                value: "CHARSET=UTF8mb4 COLLATE utf8mb4_bin"

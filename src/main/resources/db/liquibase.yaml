@@ -1,0 +1,5 @@
+url: jdbc:mysql://localhost:3306/chatbot_cms
+username: root
+password: line1234
+driver: com.mysql.jdbc.Driver
+changeLogFile: src/main/resources/db/changelog/db.changelog-master.yaml

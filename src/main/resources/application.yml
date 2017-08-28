@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/chatbot_cms?useUnicode=yes&characterEncoding=utf8
+    username: root
+    password: line1234
+
+liquibase.change-log: classpath:db/changelog/db.changelog-master.yaml
