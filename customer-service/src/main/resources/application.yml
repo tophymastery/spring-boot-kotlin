@@ -8,4 +8,8 @@ spring:
     username: root
     password: line1234
 
+management:
+  security:
+    enabled: false
+
 liquibase.change-log: classpath:db/changelog/db.changelog-master.yaml
